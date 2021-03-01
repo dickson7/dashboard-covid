@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Dashboar Covid</title>
+{% endblock %}
+
+
+{% block container %}
+<br><br>
+
+    <div class="row">
+        <div class="mt-5">
+            {% if error %}
+                <p class="alert alert-danger">{{ error }}</p>
+            {% endif%}
+    
+            <form method="POST" action="{% url "country" %}">
+                {% csrf_token %}
+        
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Code Country" name="country" />
+                </div>
+        
+                <button class="btn btn-primary btn-block mt-2" type="submit">Search</button>
+            </form>
+        </div>
+        
+        
+        {% for dt in country_covid %}
+        <div class="col-lg-4 offset-lg-4 ">
+            <h2 class="text-center mb-4">Dashboard Country</h2>
+            <h2 class="text-center mb-4">({{ dt.country }})</h2>
+
+            
+
+            <h5 class="mt-0">Recovered</h5>
+            <div class="p-3 mb-2 bg-success text-white mx-auto rounded text-center">{{ dt.recovered }}</div>
+
+            <h5 class="mt-0">Confirmed</h5>
+            <div class="p-3 mb-2 bg-warning text-white mx-auto rounded text-center">{{ dt.confirmed }}</div>
+
+            <h5 class="mt-0">Deaths</h5>
+            <div class="p-3 mb-2 bg-secondary text-white mx-auto rounded text-center">{{ dt.deaths }}</div>
+
+            <h5 class="mt-0">Critical</h5>
+            <div class="p-3 mb-2 bg-dark text-white mx-auto rounded text-center">{{ dt.critical }}</div>
+
+
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

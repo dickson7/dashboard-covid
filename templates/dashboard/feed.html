@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_content %}
+<title>Dashboar Covid</title>
+{% endblock %}
+{% block container %}
+<br><br>
+
+    <div class="row">
+        
+        
+        {% for dt in update_covid %}
+        <div class="col-lg-4 offset-lg-4 ">
+            <h2 class="text-center mb-4">Dashboard Covid-19</h2>
+
+            <h5 class="mt-0">Recovered</h5>
+            <div class="p-3 mb-2 bg-success text-white mx-auto rounded text-center">{{ dt.recovered }}</div>
+
+            <h5 class="mt-0">Confirmed</h5>
+            <div class="p-3 mb-2 bg-warning text-white mx-auto rounded text-center">{{ dt.confirmed }}</div>
+
+            <h5 class="mt-0">Deaths</h5>
+            <div class="p-3 mb-2 bg-secondary text-white mx-auto rounded text-center">{{ dt.deaths }}</div>
+
+            <h5 class="mt-0">Active</h5>
+            <div class="p-3 mb-2 bg-danger text-white mx-auto rounded text-center">{{ dt.active }}</div>
+
+            <h5 class="mt-0">Critical</h5>
+            <div class="p-3 mb-2 bg-dark text-white mx-auto rounded text-center">{{ dt.critical }}</div>
+
+
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
